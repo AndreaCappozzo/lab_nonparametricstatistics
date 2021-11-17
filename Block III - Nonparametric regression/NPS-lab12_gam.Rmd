@@ -88,7 +88,7 @@ What happens if I add the interaction?
 ```{r}
 model_lm_interaction <- lm(prestige ~ education + income + education:income, data=Prestige) 
 # model_lm_interaction <- lm(prestige ~ education * income, data=Prestige) # alternatively 
-summary(model_lm)
+summary(model_lm_interaction)
 ```
 
 I manage to capture a bit of the nonlinearity with the interaction
