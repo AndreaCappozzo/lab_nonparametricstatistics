@@ -33,7 +33,6 @@ script prepared by me for the a.y. 2020/2021
 Nonparametric statistics course. I hereby assume responsibility for any error that may
 be present in this document, I do apologise for them and invite you to let me know.*
 
-<<<<<<< HEAD
 ```{r}
 
 seed=2781991
@@ -42,7 +41,7 @@ library(progress)
 ```
 
 ##Bootstrapping and Nonlinear Regression
-For our laboratory on Boostrapping, knowing that you've alreaady seen some interesting feats in class, I decided to focus on an area where the impact of non-parametric inferential techniques are really powerful: non-linear regression.
+For our laboratory on Boostrapping, knowing that you've already seen some interesting feats in class, I decided to focus on an area where the impact of non-parametric inferential techniques are really powerful: non-linear regression.
 
 Let's start by loading and displaying some data, regarding the growth of some orange trees (specifically, the diameter of their trunk)
 
@@ -145,6 +144,9 @@ sd(T.boot.L)
 As well as its bias
 ```{r}
 mean(T.boot.L)-L.obs
+
+MSE=var(T.boot.L) + (mean(T.boot.L)-L.obs)^2
+
 ```
 
 What if I want to compute a confidence interval around the parameter? I can use the classical reverse-percentile approach:
@@ -154,8 +156,8 @@ alpha <- 0.05
 right.quantile.L <- quantile(T.boot.L, 1 - alpha/2)
 left.quantile.L  <- quantile(T.boot.L, alpha/2)
 
-CI.RP.L <- c(L.obs - (right.quantile.L - L.obs), L.obs - (left.quantile.L - L.obs))
-names(CI.RP.L)=c('lwr','upr')
+CI.RP.L <- c(L.obs - (right.quantile.L - L.obs),L.obs ,L.obs - (left.quantile.L - L.obs))
+names(CI.RP.L)=c('lwr','lvl','upr')
 CI.RP.L
 
 ```
@@ -172,12 +174,6 @@ plot(age,circumference,main='Fitted curve vs data',xlim=c(0,2500),ylim=c(20,200)
 lines(age_fine,circumference_fine,col='red')
 abline(h=L.obs, lty=2)
 abline(h = CI.RP.L)
-=======
 
-```{r}
-
-seed=2781991
-B=1000
->>>>>>> 7a08388f2cbbc8517ffd111cd955696f042f2db1
 ```
 
