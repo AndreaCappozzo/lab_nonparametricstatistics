@@ -16,5 +16,5 @@ install.packages(c("DepthProc", "aplpack", "robustbase", "roahd")) # depth measu
 install.packages('lmPerm') #permutation package
 install.packages('np','KernSmooth','splines', 'fda', 'mgcv', 'gam') # non parametric regression packages
 install.packages(c("survival", "survminer")) # survival analysis packages
-install.packages(c("robustbase", "RobStatTM", "DescTools", "psych)) # robust statistics packages
+install.packages(c("robustbase", "RobStatTM", "DescTools", "psych")) # robust statistics packages
 ```
