@@ -198,6 +198,26 @@ h <- fit_MCD$quan
 dplyr::near(fit_MCD$raw.cnp2[1],(h/N)/pchisq(qchisq(p = h/N,df = p),df = p+2))
 ```
 
+Notice that by default, unless specifying`raw.only=TRUE`, covMcd performs a reweighting step for improving the efficiency of the final estimator. In details, the new weigths are computed as follows:
+
+$$
+W\left(d^{2}\right)=I\left(d^{2} \leqslant \chi_{p, 0.975}^{2}\right)
+$$
+where $d^2$ is the squared Mahalanobis distance based on the scaled raw MCD.
+
+```{r}
+ind_rew_obs <-
+  which(
+    mahalanobis(
+      x = Animals2,
+      center = fit_MCD$raw.center,
+      cov = fit_MCD$raw.cov
+    ) <= qchisq(p = .975, df = p)
+  )
+dplyr::near(fit_MCD$center,colMeans(Animals2[ind_rew_obs,]))
+dplyr::near(fit_MCD$cov,cov(Animals2[ind_rew_obs,])*prod(fit_MCD$cnp2))
+```
+
 
 `robustbase` provides also a nice plotting method that lets us fully explore the set of graphical tools we have seen in class in an almost automatic way:
 
